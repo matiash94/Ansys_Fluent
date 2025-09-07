@@ -20,7 +20,7 @@ real tita =1.55E-3;//cte de acoplamiento del cosechador
 real l=0.5;//longitud l
 real R=100E3;//resistencia electrica
 real w1=0;//voltage
-real f1=0;
+real f1=0;//usados para integración numérica de ecuac. diferencial con método de Adam-Bashforth
 real f2=0;
 real f3=0;
 real f4=0;
@@ -37,25 +37,25 @@ DEFINE_SDOF_PROPERTIES(y_unconstrained35,prop,dt,time,dtime)
     f1=-tita*0/cp-w1/(cp*R);//es 0
     Message("\n f1 actualizado \n");
     }
-    if((CURRENT_TIME>1E-4)&&(CURRENT_TIME<3E-4))
+    else if((CURRENT_TIME>1E-4)&&(CURRENT_TIME<3E-4))
     {
     f2=-tita*cgvy/cp-w1/(cp*R);
     w1=w1+dt1*f2;
     Message("\n f2 actualizado \n");
     }
-    if((CURRENT_TIME>3E-4)&&(CURRENT_TIME<5E-4))
+    else if((CURRENT_TIME>3E-4)&&(CURRENT_TIME<5E-4))
     {
     f3=-tita*cgvy/cp-w1/(cp*R);
     w1=w1+dt1*f3;
     Message("\n f3 actualizado \n");
     }
-    if((CURRENT_TIME>5E-4)&&(CURRENT_TIME<7E-4))
+    else if((CURRENT_TIME>5E-4)&&(CURRENT_TIME<7E-4))
     {
     f4=-tita*cgvy/cp-w1/(cp*R);
     w1=w1+dt1*f4;
     Message("\n f4 actualizado \n");
     }
-    if(CURRENT_TIME>7E-4)
+    else(CURRENT_TIME>7E-4)
     {
     w1=w1+(dt1/24)*(55.0*f4-59.0*f3+37.0*f2-9.0*f1);
     f1=f2;
@@ -102,4 +102,5 @@ DEFINE_SDOF_PROPERTIES(y_unconstrained35,prop,dt,time,dtime)
     fclose(str);
     }
  
+
  }
