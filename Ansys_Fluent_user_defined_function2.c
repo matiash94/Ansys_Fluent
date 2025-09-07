@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 //real cgx =0;
-real cgy =0;
+real cgy =0;//posicion vertical del CG.
 real tiempo = 1;
 real kt0=2.29;//valor de rigidez torsional constante
 real kt1=3.88;//valor de rigidez torsional para desacoplar.. calculado para que de Vflutter = 17 m/s = 1,2*14 m/s
@@ -104,3 +104,4 @@ DEFINE_SDOF_PROPERTIES(y_unconstrained35,prop,dt,time,dtime)
  
 
  }
+
